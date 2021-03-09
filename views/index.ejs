@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+    <h1>Ugly Chat</H1>
+      
+          Name: <input type="text" id="name"><br>
+
+          Message: <input type="text" id="message"><br>
+          <button type="submit" id="submit">Post</button>
+        
+        <div id="box"></div>
+        <script src="/socket.io/socket.io.js"></script>
+        <script src="/javascripts/app.js"></script>
+  </body>
+</html>
