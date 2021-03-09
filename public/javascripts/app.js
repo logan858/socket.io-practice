@@ -22,13 +22,12 @@ socket.on("message", function(data) {
 function displayMessage({name, message, timestamp}) {
     let messageBox = document.createElement("DIV")
     messageBox.id = "messages-box"
-    document.getElementById("box").appendChild(messageBox)
-
     let newName = document.createElement("P")
     let timeStamp = document.createElement("P")
     timeStamp.id = "time-hover"
     newName.textContent = name + " : " + message;
     timeStamp.textContent = timestamp;
-    document.getElementById("messages-box").appendChild(timeStamp)
-    document.getElementById("messages-box").appendChild(newName)
+    messageBox.appendChild(timeStamp)
+    messageBox.appendChild(newName)
+    document.getElementById("box").appendChild(messageBox)
 }
