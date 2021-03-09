@@ -2,7 +2,6 @@ let io = require("socket.io")()
 
 io.on("connection", function(socket) {
     socket.on("message", function(data) {
-        console.log(data)
         io.emit("message", data)
     })
 })

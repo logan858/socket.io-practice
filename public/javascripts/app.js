@@ -4,21 +4,31 @@ let socket = io()
 button.addEventListener("click", function(evnt) {
     let nameGiven = document.getElementById("name").value
     let message = document.getElementById("message").value
-    socket.emit("message", {
-        name: nameGiven,
-        message: message,
-    })
+    document.getElementById("name").value = ""
+    document.getElementById("message").value = ""
+    if(nameGiven && message) {    
+        socket.emit("message", {
+            name: nameGiven,
+            message: message,
+            timestamp: new Date()
+        })
+    }
 })
 
 socket.on("message", function(data) {
     displayMessage(data)
 })
 
-function displayMessage({name, message}) {
+function displayMessage({name, message, timestamp}) {
+    let messageBox = document.createElement("DIV")
+    messageBox.id = "messages-box"
+    document.getElementById("box").appendChild(messageBox)
+
     let newName = document.createElement("P")
-    let newMsg = document.createElement("P")
-    newName.textContent = name;
-    newMsg.textContent = message;
-    document.getElementById("box").appendChild(newName)
-    document.getElementById("box").appendChild(newMsg)
+    let timeStamp = document.createElement("P")
+    timeStamp.id = "time-hover"
+    newName.textContent = name + " : " + message;
+    timeStamp.textContent = timestamp;
+    document.getElementById("messages-box").appendChild(timeStamp)
+    document.getElementById("messages-box").appendChild(newName)
 }
